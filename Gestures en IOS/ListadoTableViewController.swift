@@ -26,7 +26,14 @@ class ListadoTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "segue", sender: nil)
+        let cell = tableView.cellForRow(at: indexPath)
+        let tipo = cell?.textLabel?.text
+        self.performSegue(withIdentifier: "segue", sender: tipo)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let viewControler = segue.destination as! ViewController
+        viewControler.tipo = sender as! String
     }
 
     /*
